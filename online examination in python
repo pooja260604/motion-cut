@@ -1,0 +1,77 @@
+def display_question(question, options, correct_answer, current_score):
+    
+    print(f"{question}")
+    for i, option in enumerate(options, start=1):
+        print(f"{i}. {option}")
+
+    while True:
+        try:
+            user_choice = int(input("Enter the number of your answer: "))
+            if 1 <= user_choice <= len(options):
+                if options[user_choice - 1] == correct_answer:
+                    print("Correct!\n")
+                    current_score += 1
+                else:
+                    print(f"Incorrect. The correct answer is: {correct_answer}\n")
+                print(f"Your current score is: {current_score}\n")
+                return current_score 
+            else:
+                print("Invalid choice. Please choose a valid option.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
+def run_quiz():
+    
+
+    quiz_data = [
+        {
+            "question": "What is the largest planet in our solar system?",
+            "options": ["Earth", "Mars", "Jupiter", "Saturn"],
+            "correct_answer": "Jupiter",
+        },
+        {
+            "question": "What is the closest planet to the Sun?",
+            "options": ["Venus", "Earth", "Mercury", "Mars"],
+            "correct_answer": "Mercury",
+        },
+        {
+            "question": "Which galaxy is Earth located in?",
+            "options": ["Andromeda Galaxy", "Milky Way Galaxy", "Whirlpool Galaxy", "Sombrero Galaxy"],
+            "correct_answer": "Milky Way Galaxy",
+        },
+        {
+            "question": "What is the name of the first artificial satellite launched into space?",
+            "options": ["Sputnik 1", "Apollo 11", "Voyager 1", "Hubble"],
+            "correct_answer": "Sputnik 1",
+        },
+        {
+            "question": "What is the hottest planet in our solar system?",
+            "options": ["Mercury", "Venus", "Mars", "Jupiter"],
+            "correct_answer": "Venus",
+        },
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "options": ["Earth", "Venus", "Mars", "Jupiter"],
+            "correct_answer": "Mars",
+        },
+    ]
+
+    print("Welcome to the Quiz Game!")
+    print("----------------")
+
+    score = 0
+    total_questions = len(quiz_data)
+
+    
+    for data in quiz_data:
+        score = display_question(data["question"], data["options"], data["correct_answer"], score)
+
+    print("----------------")
+    print(f"Your final score is: {score}/{total_questions}")
+    print("Thank you for taking the exam.")
+
+
+
+if __name__ == "__main__":
+    run_quiz()
